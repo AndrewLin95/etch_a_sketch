@@ -18,7 +18,7 @@ body{
     flex: auto;
 }
 
-.left{
+.leftButtons{
     display:flex;
     flex-direction: column;
     justify-content: center;
@@ -28,7 +28,7 @@ body{
     border: black solid;
 }
 
-.right{
+.drawingBox{
     display:flex;
     border: black solid;
     width: 800px;
@@ -59,21 +59,3 @@ button{
     background-color: lightgray;
     transition-property: background-color;
 }
-
-
-
-/* 
-
-.test{
-    display:flex;
-    flex-direction: column;
-    border: black solid;
-    flex:auto;
-}
-
-#gridCells{
-    border: black solid;
-    flex:1 1 auto;
-}
-
-*/
