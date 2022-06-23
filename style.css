@@ -1,0 +1,79 @@
+body{
+    display: flex;
+    flex-direction: column;
+    padding-left: 20vw;
+    padding-right: 20vw;
+    align-items:center;
+}
+
+.buttonGroup{
+    display:flex;
+    flex-direction:column;
+}
+
+.centerblock{
+    display:flex;
+    justify-items: center;
+    align-content: center;
+    flex: auto;
+}
+
+.left{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 800px;
+    border: black solid;
+}
+
+.right{
+    display:flex;
+    border: black solid;
+    width: 800px;
+    height: 800px;
+    flex: auto;
+}
+
+button{
+    width: 200px;
+    height: 100px;
+    margin-top: 25px;
+}
+
+#gridColumn{
+    display:flex;
+    flex-direction: column;
+    flex: auto;
+}
+
+#gridCells{
+    flex:auto;
+    transition-delay: -1s;
+    transition-property: background-color;
+    transition-duration: 4s;
+}
+
+#gridCells:hover{
+    background-color: lightgray;
+    transition-property: background-color;
+}
+
+
+
+/* 
+
+.test{
+    display:flex;
+    flex-direction: column;
+    border: black solid;
+    flex:auto;
+}
+
+#gridCells{
+    border: black solid;
+    flex:1 1 auto;
+}
+
+*/
