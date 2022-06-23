@@ -42,20 +42,20 @@ button{
     margin-top: 25px;
 }
 
-#gridColumn{
+.gridColumn{
     display:flex;
     flex-direction: column;
     flex: auto;
 }
 
-#gridCells{
+.gridCells{
     flex:auto;
     transition-delay: -1s;
     transition-property: background-color;
     transition-duration: 4s;
 }
 
-#gridCells:hover{
+.gridCells:hover{
     background-color: lightgray;
     transition-property: background-color;
 }

@@ -1,8 +1,10 @@
 const buttonPress = document.querySelectorAll('button');
 const right = document.querySelector('.right');
+let isDrawing = false;
+const body = document.querySelector('body');  // Selects the entire body used for the mouseup event.
 
 
-let numOfGrids = 0;
+let numOfGrids = '';
 
 const generateGrid = () => {                                // Generates the columns and rows depending on the number of grids requested
     let iColumn = 0;
@@ -10,14 +12,20 @@ const generateGrid = () => {                                // Generates the col
     while (iColumn != numOfGrids){
         const gridColumn = document.createElement('div');      // Generate the column and appends the column to the right flexbox.
         right.appendChild(gridColumn);
-        gridColumn.id = 'gridColumn'
+        gridColumn.className = 'gridColumn';
         iColumn++;
 
         let iCell = 0;
         while (iCell != numOfGrids){                                // The loop that generates the x number of divs for the grid.
             const gridCells = document.createElement('div');
             gridColumn.appendChild(gridCells);
-            gridCells.id = 'gridCells'
+            gridCells.className = 'gridCells';
+
+            gridCells.addEventListener('mousemove', () =>{ 
+               if (isDrawing ===true){
+                    gridCells.style.backgroundColor = 'black';    
+                }
+            })
             iCell++;
         }
     } 
@@ -36,4 +44,16 @@ buttonPress.forEach(button => {
             generateGrid();
         }
     })
+})
+
+body.addEventListener('mouseup', () =>{
+    if (isDrawing === true){
+    isDrawing = false;
+    console.log(isDrawing);
+    }
+})
+
+right.addEventListener('mousedown', ()=>{
+    isDrawing = true;
+    console.log(isDrawing);
 })
