@@ -18,7 +18,8 @@ body{
     flex: auto;
 }
 
-.leftButtons{
+.leftButtons,
+.colorBlock{
     display:flex;
     flex-direction: column;
     justify-content: center;
