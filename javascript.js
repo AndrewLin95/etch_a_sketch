@@ -2,34 +2,59 @@ const buttonPress = document.querySelectorAll('button');
 const drawingBox = document.querySelector('.drawingBox');
 const body = document.querySelector('body');  // Selects the entire body used for the mouseup event.
 let isDrawing = false;
-let numOfGrids = 0;
+let numOfGrids = 16;
 let iColumn = 0;
 
 const generateGrid = () => {                                // Generates the columns and rows depending on the number of grids requested
-    
     if (iColumn<numOfGrids){
-        while (iColumn != numOfGrids){
-            const gridColumn = document.createElement('div');      // Generate the column and appends the column to the drawingbox flexbox.
-            drawingBox.appendChild(gridColumn);
-            gridColumn.className = 'gridColumn';
-            iColumn++;
+        gridLoop();                              // if the #ofcolumns is greater than the numofgrids selected --> select ALL .gridColumn and remove.
+    } else if (iColumn>numOfGrids){                                 // Can i move the entire generate  grid into a different loop. put the logic for adding and removing into a diff funciton that calls upon whichever one i need??
+        
+    }                                        
+}                                          
 
-            let iCell = 0;
-            while (iCell != numOfGrids){                                // The loop that generates the x number of divs for the grid. 
-                const gridCells = document.createElement('div');
-                gridColumn.appendChild(gridCells);
-                gridCells.className = 'gridCells';
+const gridLoop = () =>{
+    let iColumn = 0;
+    while (iColumn != numOfGrids){
+        const gridColumn = document.createElement('div');      // Generate the column and appends the column to the drawingbox flexbox.
+        drawingBox.appendChild(gridColumn);
+        gridColumn.className = 'gridColumn';
+        iColumn++;
 
-                gridCells.addEventListener('mousemove', () =>{          // Creates eventlistners for each gridCell that detects mousemove.
-                    if (isDrawing === true){                             // when detected and the drawing state is true, it changes the cell
-                    gridCells.style.backgroundColor = 'black';      // background color.
-                    }
-                    })
-                iCell++;
-            }
-        }                                   // if the #ofcolumns is greater than the numofgrids selected --> select ALL .gridColumn and remove.
-    }                                       // Can i move the entire generate  grid into a different loop. put the logic for adding and removing into a diff funciton that calls upon whichever one i need??
+        let iCell = 0;
+        while (iCell != numOfGrids){                                // The loop that generates the x number of divs for the grid. 
+            const gridCells = document.createElement('div');
+            gridColumn.appendChild(gridCells);
+            gridCells.className = 'gridCells';
+    
+            console.log(iCell);
+            iCell++;
+    
+            gridCells.addEventListener('mousemove', () =>{          // Creates eventlistners for each gridCell that detects mousemove.
+                if (isDrawing === true){                             // when detected and the drawing state is true, it changes the cell
+                gridCells.style.backgroundColor = 'black';      // background color.
+                }
+            })
+        }
+    }
+    
+}     
+
+
+
+const testButton = document.querySelector('#test');
+testButton.addEventListener('click', ()=>{
+    console.log('test');
+    deleteGrid();
+})
+
+function deleteGrid() {
+    for (let i=0; i<numOfGrids; i++) {
+    const column = document.querySelector('.gridColumn');
+    drawingBox.removeChild(column);
+    }
 }
+
 
 buttonPress.forEach(button => {
         button.addEventListener('click',() =>{
@@ -57,3 +82,5 @@ drawingBox.addEventListener('mousedown', ()=>{  // adds a mousedown event listen
     isDrawing = true;                           // whenever a drawing input is detected within the drawing box only.
     console.log(isDrawing);
 })
+
+gridLoop();                                    // Generates the initial set of grid. 
