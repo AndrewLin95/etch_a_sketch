@@ -2,32 +2,33 @@ const buttonPress = document.querySelectorAll('button');
 const drawingBox = document.querySelector('.drawingBox');
 const body = document.querySelector('body');  // Selects the entire body used for the mouseup event.
 let isDrawing = false;
-let numOfGrids = '';
-
+let numOfGrids = 0;
+let iColumn = 0;
 
 const generateGrid = () => {                                // Generates the columns and rows depending on the number of grids requested
-    let iColumn = 0;
+    
+    if (iColumn<numOfGrids){
+        while (iColumn != numOfGrids){
+            const gridColumn = document.createElement('div');      // Generate the column and appends the column to the drawingbox flexbox.
+            drawingBox.appendChild(gridColumn);
+            gridColumn.className = 'gridColumn';
+            iColumn++;
 
-    while (iColumn != numOfGrids){
-        const gridColumn = document.createElement('div');      // Generate the column and appends the column to the drawingbox flexbox.
-        drawingBox.appendChild(gridColumn);
-        gridColumn.className = 'gridColumn';
-        iColumn++;
+            let iCell = 0;
+            while (iCell != numOfGrids){                                // The loop that generates the x number of divs for the grid. 
+                const gridCells = document.createElement('div');
+                gridColumn.appendChild(gridCells);
+                gridCells.className = 'gridCells';
 
-        let iCell = 0;
-        while (iCell != numOfGrids){                                // The loop that generates the x number of divs for the grid. 
-            const gridCells = document.createElement('div');
-            gridColumn.appendChild(gridCells);
-            gridCells.className = 'gridCells';
-
-            gridCells.addEventListener('mousemove', () =>{          // Creates eventlistners for each gridCell that detects mousemove.
-               if (isDrawing === true){                             // when detected and the drawing state is true, it changes the cell
+                gridCells.addEventListener('mousemove', () =>{          // Creates eventlistners for each gridCell that detects mousemove.
+                    if (isDrawing === true){                             // when detected and the drawing state is true, it changes the cell
                     gridCells.style.backgroundColor = 'black';      // background color.
-                }
-            })
-            iCell++;
-        }
-    } 
+                    }
+                    })
+                iCell++;
+            }
+        }                                   // if the #ofcolumns is greater than the numofgrids selected --> select ALL .gridColumn and remove.
+    }                                       // Can i move the entire generate  grid into a different loop. put the logic for adding and removing into a diff funciton that calls upon whichever one i need??
 }
 
 buttonPress.forEach(button => {
